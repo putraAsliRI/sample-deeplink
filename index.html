@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect to App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .message {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        Mengarahkan ke aplikasi...
+    </div>
+
+    <script>
+        // Deeplink aplikasi
+        const appLink = "myapp://payment/detail?id=123";
+        const fallbackLink = "https://example.com"; // kalau app tidak terinstal, bisa arahkan ke website
+
+        // Waktu tunggu sebelum fallback (ms)
+        const timeout = 2000;
+
+        // Catat waktu awal
+        const start = Date.now();
+
+        // Coba buka deeplink
+        window.location = appLink;
+
+        // Setelah timeout, cek apakah pengguna masih di browser
+        setTimeout(() => {
+            if (Date.now() - start < timeout + 100) {
+                // Arahkan ke fallback kalau app tidak terbuka
+                window.location = fallbackLink;
+            }
+        }, timeout);
+    </script>
+</body>
+</html>
