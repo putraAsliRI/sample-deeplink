@@ -1,1 +1,67 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirect to App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #00B300; /* hijau */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 22px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      background: white;
+      color: #333;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="icon">✅</div>
+  <div class="message">Registrasi berhasil!</div>
+  <button class="btn" id="btnBack">Kembali ke platform</button>
+
+  <script>
+    const appLink = "myapp://payment/detail?appid=bni&transaction=register";
+    const fallbackLink = "https://example.com"; 
+
+    document.getElementById("btnBack").addEventListener("click", () => {
+      // coba buka deeplink
+      window.location = appLink;
+
+      // fallback kalau aplikasi tidak ada
+      setTimeout(() => {
+        window.location = fallbackLink;
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
